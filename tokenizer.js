@@ -9,15 +9,18 @@ module.exports = function tokenizer(input) {
 
         let char = input[current];
 
+
+        // parenthesis
         if (char === '(') {
             tokens.push({
                 type: 'paren',
                 value: '('
             })
-            continue;
             current++;
+            continue;
         }
 
+        // parenthesis
         if (char === ')') {
             tokens.push({
                 type: 'paren',
@@ -26,13 +29,29 @@ module.exports = function tokenizer(input) {
             current++;
             continue;
         }
-    
+
+        // white space
         let WHITESPACE = /\s/;
         if (WHITESPACE.test(char)) {
-          current++;
-          continue;
+            current++;
+            continue;
         }
-    
+
+        // number
+        let NUMBERS = /[0-9]/;
+        if (NUMBERS.test(char)) {
+            let value = '';
+            while (NUMBERS.test(char)) {
+                value += char;
+                char = input[++current]
+            }
+
+            tokens.push({ type: 'number', value });
+
+            continue;
+        }
+
     }
 
+    return tokens
 }

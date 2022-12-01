@@ -1,7 +1,11 @@
-const compiler = require('./compiler');
+// const compiler = require('./compiler');
 
-const input = '(add 2 (sub 4 3))';
+// const input = '(add 2 (sub 4 3))';
 
-const output = compiler(input);
+// const output = compiler(input);
 
-console.log(output);
+// console.log(output);
+
+const tokenizer = require('./tokenizer')
+
+console.log(tokenizer('(23 3)'))
