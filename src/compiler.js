@@ -1,5 +1,7 @@
 const tokenizer = require("./tokenizer");
 const parser = require("./parser");
+const traverser = require("./traverser");
+const transformer = require("./transformer");
 
 module.exports = function compiler(input) {
   // 1. Lexical Analysis
@@ -9,24 +11,4 @@ module.exports = function compiler(input) {
   const ast = parser(tokens);
 
   return JSON.stringify(ast);
-};
-const a = {
-  type: "Program",
-  body: [
-    {
-      type: "CallExpression",
-      name: "add",
-      params: [
-        { type: "NumberLiteral", value: "2" },
-        {
-          type: "CallExpression",
-          name: "sub",
-          params: [
-            { type: "NumberLiteral", value: "4" },
-            { type: "NumberLiteral", value: "3" },
-          ],
-        },
-      ],
-    },
-  ],
 };
