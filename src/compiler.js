@@ -1,13 +1,16 @@
 const tokenizer = require("./tokenizer");
 const parser = require("./parser");
 const transformer = require("./transformer");
+const generator = require("./generator");
 
 module.exports = function compiler(input) {
-  // 1. Lexical Analysis
   const tokens = tokenizer(input);
 
-  // 2. Syntactic Analysis
   const ast = parser(tokens);
 
-  return JSON.stringify(ast);
+  const newAst = transformer(ast);
+
+  const output = generator(newAst);
+
+  return output;
 };
